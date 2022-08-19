@@ -34,10 +34,12 @@ const App = () =>{
       setNumber(0)
       setLoading(false)
  }
+
   const checkAnswer = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (!gameOver) {
       const answer = e.currentTarget.value;
       const correct = questions[number].correct_answer === answer;
+      console.log(answer)
       if (correct) setScore(pre => pre + 1)
       const answerObject = {
         question: questions[number].question,
@@ -65,7 +67,7 @@ const App = () =>{
      {gameOver || userAnswers.length === TOTAL_QUESTIONS ? ( 
       <button className='start' onClick={startTrivia}>Start</button>): null}
      
-      {!gameOver && <p className='score'>Score:</p>}
+      {!gameOver && <p className='score'>Score:{score}</p>}
       {loading ? <p>Loading Questions ...</p> : null}
         {!loading && !gameOver && (
         <QuestionCard
